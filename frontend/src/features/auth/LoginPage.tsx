@@ -61,8 +61,9 @@ export const LoginPage: React.FC = () => {
     }
   };
 
-  const handleFillDemo = (username: string) => {
+  const handleFillDemo = (username: string, pass: string = 'admin123') => {
     setValue('nombreUsuario', username, { shouldValidate: true });
+    setValue('password', pass, { shouldValidate: true });
   };
 
   return (
@@ -187,19 +188,19 @@ export const LoginPage: React.FC = () => {
             <div className="grid grid-cols-2 gap-2 text-xs">
               <button
                 type="button"
-                onClick={() => handleFillDemo('admin')}
+                onClick={() => handleFillDemo('admin', 'admin123')}
                 className="py-2 px-3 rounded-lg bg-slate-950/80 hover:bg-slate-800 text-slate-300 border border-slate-800 text-center font-medium transition-colors min-h-[44px] flex flex-col justify-center items-center"
               >
                 <span className="font-bold text-white">Rol Admin</span>
-                <span className="text-[10px] text-slate-400">usuario: admin</span>
+                <span className="text-[10px] text-slate-400">admin / admin123</span>
               </button>
               <button
                 type="button"
-                onClick={() => handleFillDemo('nelson')}
+                onClick={() => handleFillDemo('tomas', 'admin123')}
                 className="py-2 px-3 rounded-lg bg-slate-950/80 hover:bg-slate-800 text-slate-300 border border-slate-800 text-center font-medium transition-colors min-h-[44px] flex flex-col justify-center items-center"
               >
                 <span className="font-bold text-emerald-400">Rol Mecánico</span>
-                <span className="text-[10px] text-slate-400">usuario: nelson</span>
+                <span className="text-[10px] text-slate-400">tomas / admin123</span>
               </button>
             </div>
           </div>
