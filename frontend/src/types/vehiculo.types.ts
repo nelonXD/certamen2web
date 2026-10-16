@@ -9,6 +9,8 @@ export interface Vehiculo {
     clienteId: number;
     nombre: string;
     apellido: string;
+    telefono?: string;
+    correo?: string;
   };
   modelo?: {
     modeloId: number;
