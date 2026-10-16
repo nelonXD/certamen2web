@@ -1,0 +1,26 @@
+# Node / Frontend
+**/node_modules/
+**/dist/
+frontend/.env
+frontend/.env.local
+
+# .NET / Backend
+**/bin/
+**/obj/
+**/TestResults/
+*.suo
+*.user
+TallerMecanico/TallerMecanico/appsettings.Development.json
+
+# Environment files with secrets
+.env
+*.local
+
+# IDE and temp
+.vs/
+**/[Bb]in/
+**/[Oo]bj/
+*.rar
+*.zip
+*.suo
+*.user
