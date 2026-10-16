@@ -34,7 +34,7 @@ export const setStoredUser = (user: unknown): void => {
 
 // Cliente HTTP centralizado
 export const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || 'https://localhost:7027/api/v1',
+  baseURL: import.meta.env.VITE_API_BASE_URL || '/api/v1',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -57,8 +57,16 @@ apiClient.interceptors.request.use(
 apiClient.interceptors.response.use(
   (response) => response,
   (error: AxiosError<Record<string, unknown>>) => {
-    const status = error.response?.status || 500;
-    const data = error.response?.data;
+    if (!error.response) {
+      const normalized: NormalizedError = {
+        status: 0,
+        message: 'No se pudo conectar con el servidor backend. Asegúrate de que la API esté en ejecución (dotnet run en puerto 5290 o 7027).',
+      };
+      return Promise.reject(normalized);
+    }
+
+    const status = error.response.status;
+    const data = error.response.data;
 
     const normalized: NormalizedError = {
       status,
