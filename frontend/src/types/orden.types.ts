@@ -13,6 +13,13 @@ export interface Mecanico {
   };
 }
 
+export interface MecanicoDTO {
+  nombre: string;
+  apellido: string;
+  telefono: string;
+  especialidadId: number;
+}
+
 export interface Pago {
   pagoId: number;
   ordenId: number;

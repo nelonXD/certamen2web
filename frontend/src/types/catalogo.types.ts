@@ -23,8 +23,21 @@ export interface Servicio {
   costo: number;
 }
 
+export interface ServicioDTO {
+  nombre: string;
+  descripcion: string;
+  costo: number;
+}
+
 export interface Repuesto {
   repuestoId: number;
+  nombre: string;
+  descripcion: string;
+  precio: number;
+  stock: number;
+}
+
+export interface RepuestoDTO {
   nombre: string;
   descripcion: string;
   precio: number;

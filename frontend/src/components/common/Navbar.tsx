@@ -12,6 +12,7 @@ import {
   ShieldCheck,
   UserCheck,
   ChevronDown,
+  Settings,
 } from 'lucide-react';
 
 export const Navbar: React.FC = () => {
@@ -46,6 +47,14 @@ export const Navbar: React.FC = () => {
       icon: <Car className="w-4 h-4 mr-2 text-amber-400" aria-hidden="true" />,
     },
   ];
+
+  if (role === 'Admin') {
+    navLinks.push({
+      to: '/administracion',
+      label: 'Gestión Taller',
+      icon: <Settings className="w-4 h-4 mr-2 text-purple-400" aria-hidden="true" />,
+    });
+  }
 
   return (
     <header className="bg-slate-950/95 backdrop-blur-md text-white border-b border-slate-800/80 sticky top-0 z-40 shadow-lg">

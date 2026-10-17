@@ -13,6 +13,8 @@ import { VehiculosListPage } from '../features/vehiculos/VehiculosListPage';
 import { ForbiddenPage } from '../features/error/ForbiddenPage';
 import { NotFoundPage } from '../features/error/NotFoundPage';
 
+import { AdministracionPage } from '../features/administracion/AdministracionPage';
+
 export const AppRoutes: React.FC = () => {
   return (
     <Routes>
@@ -37,6 +39,14 @@ export const AppRoutes: React.FC = () => {
 
           {/* CRUD Vehículos (Recurso Relacionado) */}
           <Route path="/vehiculos" element={<VehiculosListPage />} />
+
+          {/* Módulo de Administración (Solo Admin) */}
+          <Route element={<ProtectedRoute allowedRoles={['Admin']} />}>
+            <Route path="/administracion" element={<AdministracionPage />} />
+            <Route path="/mecanicos" element={<Navigate to="/administracion" replace />} />
+            <Route path="/servicios" element={<Navigate to="/administracion" replace />} />
+            <Route path="/repuestos" element={<Navigate to="/administracion" replace />} />
+          </Route>
         </Route>
       </Route>
 
