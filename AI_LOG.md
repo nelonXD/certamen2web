@@ -96,3 +96,19 @@ Se declara de manera transparente el uso de herramientas de Inteligencia Artific
 - **Acciones y Correcciones Realizadas**:
   - **Aceptado**: Se verificó el contraste cromático (>= 4.5:1) y objetivos táctiles (>= 44x44px) para preservar el cumplimiento estricto de WCAG 2.2 Nivel AA.
   - **Aceptado y Validado**: 100% de las pruebas automatizadas (9/9) pasando con Vitest y build de producción (`vite build`) limpio en 630ms sin advertencias de tipos.
+
+---
+
+### 2.7 Fase 7: Módulo de Gestión Integral de Taller (Mecánicos, Servicios y Repuestos)
+- **Prompt Relevante**:
+  > *"en el rol de administador no deveria poder registrar en todas las api"* -> *"A"*
+- **Respuesta de la IA**:
+  - Ampliación de la cobertura de consumo de APIs para que el usuario con rol `Admin` pueda gestionar y registrar recursos auxiliares directamente desde la interfaz:
+    1. **Módulo de Administración (`/administracion`)**: Vista con pestañas para Mecánicos, Servicios y Repuestos, protegida estrictamente por rol `Admin` (`allowedRoles={['Admin']}`).
+    2. **CRUD Completo de Mecánicos**: Registro y edición de técnicos especialistas con asignación de especialidades técnicas (`POST/PUT/DELETE /api/v1/mecanicos`).
+    3. **CRUD de Catálogo de Servicios**: Registro de prestaciones de taller con descripción y arancel en pesos chilenos (`POST/PUT/DELETE /api/v1/servicios`).
+    4. **CRUD de Inventario de Repuestos**: Registro de piezas e insumos con control de stock y precio unitario (`POST/PUT/DELETE /api/v1/repuestos`).
+- **Acciones y Correcciones Realizadas**:
+  - **Aceptado**: Se añadieron los métodos CRUD en `catalogos.service.ts` y tipos tipados en `catalogo.types.ts` y `orden.types.ts`.
+  - **Aceptado**: Se vinculó dinámicamente el enlace "Gestión Taller" en la barra de navegación (`Navbar.tsx`) condicionado a `role === 'Admin'`.
+  - **Aceptado**: Pruebas automatizadas y compilación ejecutadas sin fallos (9/9 tests passed, 0 errores).
