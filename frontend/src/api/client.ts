@@ -73,11 +73,18 @@ apiClient.interceptors.response.use(
       message: 'Ocurrió un error inesperado.',
     };
 
+    const isLoginRequest = error.config?.url?.includes('/login');
+
     if (status === 401) {
-      normalized.message = 'Tu sesión ha expirado o las credenciales no son válidas.';
-      removeStoredToken();
-      // Disparamos evento para que el contexto de Auth actualice el estado
-      window.dispatchEvent(new CustomEvent('auth:unauthorized'));
+      normalized.message = isLoginRequest
+        ? 'Nombre de usuario o contraseña incorrectos.'
+        : 'Tu sesión ha expirado o las credenciales no son válidas.';
+
+      if (!isLoginRequest) {
+        removeStoredToken();
+        // Disparamos evento para que el contexto de Auth actualice el estado
+        window.dispatchEvent(new CustomEvent('auth:unauthorized'));
+      }
     } else if (status === 403) {
       normalized.message = 'No tienes permisos suficientes para realizar esta acción (403 Acceso Denegado).';
       window.dispatchEvent(new CustomEvent('auth:forbidden'));
