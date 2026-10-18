@@ -49,7 +49,7 @@ Sistema integrado de gestión para Taller Mecánico que une una **API RESTful en
    ```
 3. Verifica o ajusta el archivo `.env` (creado a partir de `.env.example`):
    ```env
-   VITE_API_BASE_URL=https://localhost:7027/api/v1
+   VITE_API_BASE_URL=/api/v1
    ```
 4. Ejecuta la suite de pruebas automatizadas:
    ```bash
@@ -65,8 +65,10 @@ Sistema integrado de gestión para Taller Mecánico que une una **API RESTful en
 
 ## 🔐 Roles y Credenciales de Demostración
 
-La aplicación maneja control de acceso por roles:
-- **Admin**: Acceso completo a lectura, creación, edición y **eliminación** de órdenes, clientes y vehículos.
-- **Mecánico**: Acceso a consultar, crear y editar órdenes y clientes; no tiene permiso para eliminar registros (recibe 403 en API y botón protegido en cliente).
+La aplicación maneja control de acceso basado en roles (RBAC):
+- **Admin**: Acceso completo a lectura, creación, edición y **eliminación** de órdenes, clientes, vehículos, mecánicos, catálogo de servicios e inventario de repuestos.
+  - **Usuario:** `admin` | **Contraseña:** `admin123`
+- **Mecánico**: Acceso a consultar, crear y editar órdenes y clientes; no tiene permiso para eliminar registros ni acceder a la administración del taller (recibe HTTP 403 en API y vista `/acceso-denegado` en cliente).
+  - **Usuario:** `tomas` | **Contraseña:** `admin123`
 
-> Puedes registrar un nuevo usuario con rol Mecánico directamente desde el formulario de **Registro** en el frontend (`/registro`).
+> En la pantalla de inicio de sesión (`/login`), dispones de botones de **Acceso Rápido para Demostración** con autocompletado en un solo clic. También puedes registrar nuevos mecánicos desde el formulario de **Registro** (`/registro`).
